@@ -1,0 +1,55 @@
+<div class="row">
+
+  <div class="col-md-offset-3 col-md-6">
+
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+
+        <%= image_tag @page.cover, class: "img-responsive img-rounded" %>
+
+        <div class="well top-margin">
+
+          <%= image_tag @page.picture, class: "img-responsive pull-left thumbnail" %>
+
+          <h3><%= @page.name %></h3>
+
+          <span class="glyphicon glyphicon-thumbs-up"><%= @page.likes %></span>
+
+          <p><span class="glyphicon glyphicon-link"><%= link_to "Browse", @page.link %></span></p>
+
+        </div>
+
+      </div>
+
+      <div class="panel-body">
+
+        <div class="media">
+
+          <% @page.feeds.each do |f| %>
+  
+            <div class="media-body well">
+    
+              <h4 class="media-heading"><%= f.name %></h4>
+          
+              <%= image_tag f.picture, class: "img-responsive pull-left" %>
+            
+              <%= with_hashtags f.message %>
+              
+              <p><%= link_to f.link, f.link %></p>
+            
+              <p><span class="glyphicon glyphicon-envelope"><%= link_to "Comment", f.comment_link %></span></p>
+            
+              <p><small><%= t("ago", time: f.updated_time) %></small></p>
+
+          </div>
+        
+        <% end %>
+      
+      </div>
+    
+    </div>
+  
+  </div>
+
+</div>
